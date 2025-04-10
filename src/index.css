@@ -25,9 +25,24 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   min-width: 320px;
   min-height: 100vh;
+  background-color: #242424; /* Dark background */
+}
+
+.App {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  text-align: center; /* Center text */
+  padding: 2rem;
+  background-color: #1a1a1a; /* Slightly lighter background for the app container */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  color: rgba(255, 255, 255, 0.87); /* Light text color */
 }
 
 h1 {
