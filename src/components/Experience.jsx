@@ -1,77 +1,81 @@
 import React, { useState } from "react";
 
-function Experience({ onChange }) {
-  const [expData, setExpData] = useState({
+function Experience() {
+  const [formData, setFormData] = useState({
     company: "",
     position: "",
-    responsibilities: "",
-    fromMonth: "",
-    toMonth: "",
+    duration: "",
   });
+
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedData = { ...expData, [name]: value };
-    setExpData(updatedData);
-    onChange(updatedData); 
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const handleEdit = () => {
+    setSubmitted(false);
+  };
+
   return (
-    <>
-      <div className="experience">
-        <h2>Work Experience</h2>
-        <label>
-          Company Name:
-          <input
-            type="text"
-            name="company"
-            value={expData.company}
-            onChange={handleChange}
-          />
-        </label>
+    <div className="section">
+      <h2>Experience</h2>
 
-        <br />
-
-        <label>
-          Position:
-          <input
-            type="text"
-            name="position"
-            value={expData.position}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Responsibilities:
-          <input
-            type="text"
-            name="responsibilities"
-            value={expData.responsibilities}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-
-        <h3>Duration</h3>
-        <label>
-          From:
-          <input
-            type="text"
-            name="fromMonth"
-            value={expData.fromMonth}
-            onChange={handleChange}
-          />
-          To:
-          <input
-            type="text"
-            name="toMonth"
-            value={expData.toMonth}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-    </>
+      {!submitted ? (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Company:
+            <input
+              type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Position:
+            <input
+              type="text"
+              name="position"
+              value={formData.position}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Duration:
+            <input
+              type="text"
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <div className="card">
+          <p>
+            <strong>Company:</strong> {formData.company}
+          </p>
+          <p>
+            <strong>Position:</strong> {formData.position}
+          </p>
+          <p>
+            <strong>Duration:</strong> {formData.duration}
+          </p>
+          <button onClick={handleEdit}>Edit</button>
+        </div>
+      )}
+    </div>
   );
 }
 

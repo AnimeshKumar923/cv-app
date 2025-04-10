@@ -1,57 +1,82 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function Education({ onChange }) {
-  // let defaultDate = new Date();
-  // defaultDate.setDate(defaultDate.getDate());
-
-  const [eduData, setEduData] = useState({
-    schoolName: "",
-    studyTitle: "",
-    studyDate: "",
+function Education() {
+  const [formData, setFormData] = useState({
+    school: "",
+    degree: "",
+    graduationYear: "",
   });
+
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedData = { ...eduData, [name]: value };
-    setEduData(updatedData);
-    onChange(updatedData);
+    console.log("Updating", name, "to", value);
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const handleEdit = () => {
+    setSubmitted(false);
   };
 
   return (
-    <>
-      <div className="education">
-        <h2>Educational Qualifications</h2>
-        <label>
-          School Name:
-          <input
-            type="text"
-            name="schoolName"
-            value={eduData.schoolName}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Title of Study:
-          <input
-            type="text"
-            name="studyTitle"
-            value={eduData.studyTitle}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Date of study:
-          <input
-            type="text"
-            name="studyDate"
-            value={eduData.studyDate}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-    </>
+    <div className="section">
+      <h2>Education</h2>
+
+      {!submitted ? (
+        <form onSubmit={handleSubmit}>
+          <label>
+            School:
+            <input
+              type="text"
+              name="school"
+              value={formData.school}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Degree:
+            <input
+              type="text"
+              name="degree"
+              value={formData.degree}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Graduation Year:
+            <input
+              type="text"
+              name="graduationYear"
+              value={formData.graduationYear}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <div className="card">
+          <p>
+            <strong>School:</strong> {formData.school}
+          </p>
+          <p>
+            <strong>Degree:</strong> {formData.degree}
+          </p>
+          <p>
+            <strong>Graduation Year:</strong> {formData.graduationYear}
+          </p>
+          <button onClick={handleEdit}>Edit</button>
+        </div>
+      )}
+    </div>
   );
 }
 
