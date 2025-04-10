@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Experience() {
+function Experience({ onSubmit }) {
   const [formData, setFormData] = useState({
     company: "",
     position: "",
@@ -17,6 +17,7 @@ function Experience() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    onSubmit(formData);
   };
 
   const handleEdit = () => {

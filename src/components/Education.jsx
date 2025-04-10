@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Education() {
+function Education({ onSubmit }) {
   const [formData, setFormData] = useState({
     school: "",
     degree: "",
@@ -18,6 +18,7 @@ function Education() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    onSubmit(formData);
   };
 
   const handleEdit = () => {

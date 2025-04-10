@@ -3,7 +3,7 @@ function Resume({ personal, education, experience }) {
 
   return (
     <div className="resume-preview">
-      <h2>Preview</h2>
+      <h1>Rendered CV</h1>
       {personal && (
         <div>
           <h3>Personal Info</h3>
