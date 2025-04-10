@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-function Education() {
-  let defaultDate = new Date();
-  defaultDate.setDate(defaultDate.getDate() + 3);
+function Education({ onChange }) {
+  // let defaultDate = new Date();
+  // defaultDate.setDate(defaultDate.getDate());
 
   const [eduData, setEduData] = useState({
-    school: "",
-    title: "",
-    date: defaultDate,
+    schoolName: "",
+    studyTitle: "",
+    studyDate: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedData = { ...personalData, [name]: value };
-    setPersonalData(updatedData);
-    onChange(updatedData); // Notify parent of the change
+    const updatedData = { ...eduData, [name]: value };
+    setEduData(updatedData);
+    onChange(updatedData);
   };
 
   return (
@@ -22,15 +22,33 @@ function Education() {
       <div className="education">
         <h2>Educational Qualifications</h2>
         <label>
-          School Name: <input type="text" id="school_name" required />
+          School Name:
+          <input
+            type="text"
+            name="schoolName"
+            value={eduData.schoolName}
+            onChange={handleChange}
+          />
         </label>
         <br />
         <label>
-          Title of Study: <input type="text" id="study_title" required />
+          Title of Study:
+          <input
+            type="text"
+            name="studyTitle"
+            value={eduData.studyTitle}
+            onChange={handleChange}
+          />
         </label>
         <br />
         <label>
-          Date of study: <input type="date" id="study_date" required />
+          Date of study:
+          <input
+            type="text"
+            name="studyDate"
+            value={eduData.studyDate}
+            onChange={handleChange}
+          />
         </label>
       </div>
     </>

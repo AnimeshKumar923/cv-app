@@ -12,11 +12,11 @@ function App() {
     experience: {},
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
     // console.log("Form submitted!", formData);
     // You can now pass formData to the Final component
-  };
+  // };
 
   const handlePersonalChange = (data) => {
     setFormData((prev) => ({ ...prev, personal: data }));
@@ -33,11 +33,11 @@ function App() {
   return (
     <>
       <div className="application">
-        <form onSubmit={handleSubmit}>
+        <form>
           <Personal onChange={handlePersonalChange} />
           <Education onChange={handleEducationChange} />
           <Experience onChange={handleExperienceChange} />
-          <button type="submit">Submit</button>
+          {/* <button type="submit">Submit</button> */}
         </form>
         <Final formData={formData} />
       </div>

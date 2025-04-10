@@ -16,6 +16,7 @@ function Personal({ onChange }) {
 
   return (
     <div>
+      <h2>Personal Information</h2>
       <label>
         Name:
         <input
@@ -25,6 +26,7 @@ function Personal({ onChange }) {
           onChange={handleChange}
         />
       </label>
+      <br />
       <label>
         Email:
         <input
@@ -34,6 +36,7 @@ function Personal({ onChange }) {
           onChange={handleChange}
         />
       </label>
+      <br />
       <label>
         Phone:
         <input
